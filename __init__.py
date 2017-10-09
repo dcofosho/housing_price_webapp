@@ -69,9 +69,12 @@ def getPrice(x,y,z):
 @app.route('/', methods=['GET','POST'])
 def homePage():
 	if request.method == 'POST':
-		return getPrice(5, 17, 15)
+		x=request.form['x']
+		y=request.form['y']
+		z=request.form['z']
+		return getPrice(x, y, z)
 	else:
-		return getPrice(5, 17, 15)
+		return render_template("home.html")
 
 if __name__ == '__main__':
 	app.secret_key='totally_secure_key'
