@@ -1,8 +1,16 @@
 <html>
+	Boston Housing Price Predictor
+	<br><br><hr>
 	<form action="{{url_for('homePage')}}" method="post">
-		<input type="number" step="0.01" name="x" placehoder="x">
-		<input type="number" step="0.01" name="y" placehoder="y">
-		<input type="number" step="0.01" name="z" placehoder="z">
- 		<button type="submit">Go!</button>
+		Input number of rooms<br>
+		<input type="number" step="0.01" name="rm" placehoder="Number of Rooms">
+		<br>
+		Input percentage of neighborhood below poverty line<br>
+		<input type="number" step="0.01" name="lstat" placehoder="Percentage of population below poverty line">
+		<br>
+		Input Pupil-Teacher Ratio<br>
+		<input type="number" step="0.01" name="ptr" placehoder="Pupil-Teacher Ratio">
+ 		<br>
+		<button type="submit">Go!</button>
 	</form>
 </html>
