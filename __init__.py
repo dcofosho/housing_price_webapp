@@ -54,10 +54,11 @@ print("R2 score"+"\n"+str(performance_metric(y_train, y_train)))
 
 def fit_model(X, y):
 	regressor = DecisionTreeRegressor()
-	parameters = {'max_depth':(1,2,3,4,5,6,7,8,9)}
+	parameters = {'max_depth':(1,2,3,4,5,6,7,8,9,10)}
 	scoring_function = make_scorer(performance_metric,
 	 greater_is_better=True)
-	reg = GridSearchCV(regressor, parameters, scoring=scoring_function)
+	cv = ShuffleSplit(n_splits = 10, test_size = 0.20, train_size=None, random_state = 0)
+	reg = GridSearchCV(regressor, parameters, scoring=scoring_function, cv=cv)
 	reg.fit(X,y)
 	return reg.best_estimator_
 
@@ -75,6 +76,10 @@ def homePage():
 		return "Number of rooms: "+str(x)+"<br>"+"Percentage of neighborhood below poverty line: "+str(y)+"<br>"+"Pupil-Teacher Ratio: "+str(z)+"<br>"+"<br>"+"Given these parameters, the predicted price of a house in boston is "+getPrice(x, y, z)+"<br>"+"<button onClick='history.back()'>Go Back</button>"
 	else:
 		return render_template("home.html")
+
+@app.route('/bostonapi/<int:rm>/<int:lstat>/<int:ptr>')
+def bostonAPI(rm, lstat, ptr):
+        return jsonify(rm=rm, lstat=lstat, ptr=ptr, price=getPrice(rm, lstat, ptr))
 
 if __name__ == '__main__':
 	app.secret_key='totally_secure_key'
