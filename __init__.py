@@ -67,7 +67,7 @@ print("Predicted sales prices for client input data:"+"\n"+str(fit_model(feature
 def getPrice(rm,lstat,ptr):
 	return str(fit_model(features, prices).predict([[rm,lstat,ptr]])).replace("[","$").replace("]", " ").split(".")[0].replace(".", " ")
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/boston', methods=['GET','POST'])
 def homePage():
 	if request.method == 'POST':
 		x=request.form['rm']
