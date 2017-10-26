@@ -9,6 +9,6 @@ Navigate to the project folder in the terminal.
 Run the command python __init__.py
 </li>
 <li>
-Visit localhost:5000/home in your browser to view the site.
+Visit localhost:5000/boston in your browser to view the site.
 </li>	
 </ul>
